@@ -52,15 +52,15 @@ func handleProtoClient(conn net.Conn, c chan *ProtobufTest.TestMessage) {
 	c <- protodata
 }
 
-func writeValuesTofile(datatowrite *ProtobufTest.TestMessage) {
+func writeValuesTofile(d *ProtobufTest.TestMessage) {
 
 	//Retreive client information from the protobuf message
-	ClientName := datatowrite.GetClientName()
-	ClientDescription := datatowrite.GetDescription()
-	ClientID := strconv.Itoa(int(datatowrite.GetClientId()))
+	ClientName := d.GetClientName()
+	ClientDescription := d.GetDescription()
+	ClientID := strconv.Itoa(int(d.GetClientId()))
 
 	// retrieve the message items list
-	items := datatowrite.GetMessageItems()
+	items := d.GetMessageItems()
 	fmt.Println("Writing value to CSV file")
 	//Open file for writes, if the file does not exist then create it
 	file, err := os.OpenFile("CSVValues.csv", os.O_RDWR|os.O_APPEND|os.O_CREATE, 0666)
