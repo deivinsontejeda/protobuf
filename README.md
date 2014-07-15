@@ -1,4 +1,6 @@
 protobuf
 ========
 
-Example using protobuf to transfer data between two endpoints
+Practical guide using [Protobuf protocol](https://developers.google.com/protocol-buffers/docs/proto) 
+
+More doc comming soon.
