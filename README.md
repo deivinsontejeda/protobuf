@@ -1,7 +1,11 @@
 protobuf
 ========
 
-A very simple example using [Protobuf protocol](https://developers.google.com/protocol-buffers/docs/proto) 
+A very simple example using [Protobuf protocol](https://developers.google.com/protocol-buffers/docs/proto).
+
+This example is composed by two sides a client which send serialized data using Protobuf protocol and server which receive it and decode to processing. For this example just send the input to standard output, but you can think instead of send to standard output could send to store a database.
+
+Once you cloned this repositorie need get up the server (written in Go) which will decode messages sent by clients. This server listen on port `2110`.
 
 Install Protobuf & dependencies
 ========
@@ -26,10 +30,6 @@ $ gem install protobuf
 
 How to run?
 ======
-
-This example is composed by two sides a client which send serialized data using Protobuf protocol and server which receive it and decode to processing. For this example just send the input to standard output, but you can think instead of send to standard output could send to store a database.
-
-Once you cloned this repositorie need get up the server (written in Go) which will decode messages sent by clients. This server listen on port `2110`.
 
 In a consola go to `server` folder and run follow command:
 
