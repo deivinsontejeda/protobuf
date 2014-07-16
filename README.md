@@ -10,7 +10,7 @@ Install Protobuf protocol compiler
 ```bash
 brew install protobuf
 ```
-More details about how to install visit its [oficial page](https://developers.google.com/protocol-buffers/)
+More details about how to install Protobuf or further issue visit its [oficial page](https://developers.google.com/protocol-buffers/)
 
 
 Install Go library
