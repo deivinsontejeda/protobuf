@@ -51,6 +51,4 @@ Now, you can repeat the previous step but now running ruby client.
 $ ruby client.rb
 ```
 
-enjoy!
-
-
+Happy Hacking!
