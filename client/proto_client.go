@@ -14,7 +14,7 @@ import (
 
 var (
 	filename = flag.String("f", "./data.csv", "Enter the filename to read from")
-	HTTPAddr = flag.String("http", "127.0.0.1:2110", "Address to lister HTTP requests on")
+	HTTPAddr = flag.String("http", "127.0.0.1:2110", "Address to send HTTP requests")
 )
 
 type Headers []string
@@ -51,7 +51,8 @@ func sendData(data []byte, dst *string) {
 	fmt.Println("Sent " + strconv.Itoa(n) + " bytes")
 }
 
-func readDataFromFile(fname *string) ([]byte, error) {
+// Read data from a CSV
+func readData(fname *string) ([]byte, error) {
 	file, err := os.Open(*fname)
 	checkError(err)
 	defer file.Close()
@@ -112,7 +113,7 @@ func readDataFromFile(fname *string) ([]byte, error) {
 func main() {
 	flag.Parse()
 
-	data, err := readDataFromFile(filename)
+	data, err := readData(filename)
 	checkError(err)
 	sendData(data, HTTPAddr)
 }

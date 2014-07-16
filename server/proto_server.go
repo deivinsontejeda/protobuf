@@ -2,7 +2,6 @@ package main
 
 import (
 	"code.google.com/p/goprotobuf/proto"
-	"encoding/csv"
 	"fmt"
 	"github.com/deivinsontejeda/protobuf/ProtobufTest"
 	"net"
@@ -16,7 +15,7 @@ func main() {
 	go func() {
 		for {
 			message := <-c
-			writeValuesTofile(message)
+			writeValueOutput(message)
 
 		}
 	}()
@@ -37,6 +36,7 @@ func handleProtoClient(conn net.Conn, c chan *ProtobufTest.TestMessage) {
 	fmt.Println("Connection established")
 	//Close the connection when the function exits
 	defer conn.Close()
+
 	//Create a data buffer of type byte slice with capacity of 4096
 	data := make([]byte, 4096)
 	//Read the data waiting on the connection and put it in the data buffer
@@ -52,7 +52,7 @@ func handleProtoClient(conn net.Conn, c chan *ProtobufTest.TestMessage) {
 	c <- protodata
 }
 
-func writeValuesTofile(d *ProtobufTest.TestMessage) {
+func writeValueOutput(d *ProtobufTest.TestMessage) {
 
 	//Retreive client information from the protobuf message
 	ClientName := d.GetClientName()
@@ -61,22 +61,14 @@ func writeValuesTofile(d *ProtobufTest.TestMessage) {
 
 	// retrieve the message items list
 	items := d.GetMessageItems()
-	fmt.Println("Writing value to CSV file")
-	//Open file for writes, if the file does not exist then create it
-	file, err := os.OpenFile("CSVValues.csv", os.O_RDWR|os.O_APPEND|os.O_CREATE, 0666)
-	checkError(err)
-	//make sure the file gets closed once the function exists
-	defer file.Close()
-	//Go through the list of message items, insert them into a string array then write them to the CSV file.
-	writer := csv.NewWriter(file)
+
+	fmt.Println("Retreive all message items")
+	//Go through the list of message items, insert them into a string array then write them.
 	for _, item := range items {
 		record := []string{ClientID, ClientName, ClientDescription, strconv.Itoa(int(item.GetId())), item.GetItemName(), strconv.Itoa(int(item.GetItemValue())), strconv.Itoa(int(item.GetItemType()))}
-		writer.Write(record)
+		// IDEA: Here you can store each item into a table, CSV file or whatever you want :)
 		fmt.Println(record)
 	}
-	//flush data to the CSV file
-	writer.Flush()
-	fmt.Println("Finished Writing value to CSV file")
 }
 
 func checkError(err error) {
