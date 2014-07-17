@@ -1,4 +1,4 @@
-protobuf
+Google Protocol Buffer
 ========
 
 A very simple example using [Protobuf protocol](https://developers.google.com/protocol-buffers/docs/proto).
@@ -50,5 +50,10 @@ Now, you can repeat the previous step but now running ruby client.
 ```bash
 $ ruby client.rb
 ```
+
+References
+=======
+
+* [5 Reasons to Use Protocol Buffers Instead of JSON For Your Next Service](http://blog.codeclimate.com/blog/2014/06/05/choose-protocol-buffers/)
 
 Happy Hacking!
